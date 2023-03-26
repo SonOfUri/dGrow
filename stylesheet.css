@@ -1,0 +1,244 @@
+html {
+  font-size: 62.7%;
+  font-family: Montserrat;
+}
+
+* {
+  font-family: Fredericka the Great, cursive;
+  font-family: Montserrat, sans-serif;
+  color: #fff;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  background: #202020;
+  background: radial-gradient(circle, #2e2e2e 0, hsla(0, 0%, 5%, 0.958) 49%, #050505 100%);
+  height: 100vh;
+}
+
+.nav {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+.nav-img {
+  width: 10rem;
+}
+.nav-img img {
+  width: 100%;
+}
+.nav-links, .nav-btns {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin: auto 1rem;
+}
+.nav-links {
+  font-size: 2.5rem;
+}
+.nav-links p {
+  border-radius: 0.4rem;
+  padding: 1.2rem 0.8rem;
+  border: 0.1rem solid transparent;
+  font-size: 2.4rem;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+.nav-btns {
+  font-size: 2.5rem;
+}
+.nav-btns_1 {
+  padding: 1.4rem 1rem;
+  font-size: 2rem;
+  color: #fff;
+  border: 0.1rem solid #d9d9d9;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+}
+.nav-btns_2 {
+  border: 0.1rem solid #d9d9d9;
+  border-bottom: 0.3rem solid #d9d9d9;
+  border-radius: 0.4rem;
+  background-color: #2f2f2f;
+  text-decoration: none;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-size: 2rem;
+  color: #f1f1f1;
+  padding: 1.5rem;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+
+.app {
+  width: -moz-fit-content;
+  width: fit-content;
+  background: linear-gradient(180deg, rgba(47, 47, 47, 0.4), rgba(47, 47, 47, 0.5));
+  border: 0.1rem solid #f1f1f1;
+  border-radius: 0.8rem;
+  padding: 3rem;
+  position: relative;
+  margin: 8rem auto;
+  font-size: 2rem !important;
+}
+.app button {
+  border: 0.1rem solid #d9d9d9;
+  border-bottom: 0.4rem solid #d9d9d9;
+  border-radius: 0.4rem;
+  background-color: #2f2f2f;
+  text-decoration: none;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #f1f1f1;
+  text-transform: uppercase;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s;
+  width: 100%;
+}
+
+.swapbox {
+  display: flex;
+}
+.swapbox_select {
+  margin: auto 1rem;
+}
+.swapbox_select input {
+  width: 30rem;
+  height: 4rem;
+}
+
+.token_select {
+  padding: 0.5rem;
+  border: 0.1rem solid #2f2f2f;
+  border-radius: 0.3rem;
+  margin-right: 1rem;
+  font-size: 1rem;
+  width: 10rem;
+}
+
+.tokenBalance {
+  text-align: end;
+}
+
+.rad-label {
+  display: flex;
+  align-items: center;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.rad-label:hover,
+.rad-label:focus-within {
+  background: #2f2f2f;
+}
+
+.rad-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  z-index: -1;
+}
+
+.rad-design {
+  width: 22px;
+  height: 22px;
+  border-radius: 100px;
+  background: radial-gradient(circle, #2e2e2e 0, hsla(0, 0%, 5%, 0.958) 49%, #050505 100%);
+  position: relative;
+}
+
+.rad-design::before {
+  content: "";
+  display: inline-block;
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  background: hsl(0, 0%, 90%);
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+.rad-input:checked + .rad-design::before {
+  transform: scale(0);
+}
+
+.rad-text {
+  margin-left: 14px;
+  transition: 0.3s;
+  font-size: 1.5rem;
+}
+
+.rad-input:checked ~ .rad-text {
+  color: hsl(0, 0%, 40%);
+}
+
+.modal {
+  top: 40% !important;
+}
+.modal-content {
+  width: 20rem !important;
+  background: linear-gradient(180deg, #2f2f2f, #2f2f2f);
+  color: #fff;
+}
+.modal-body * {
+  text-align: center;
+  margin-bottom: 2rem;
+  border-radius: 1rem;
+}
+
+.settings {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  background-color: #000;
+}
+.footer-links {
+  padding: 2rem;
+}
+.footer-links i {
+  font-size: 5rem;
+  margin: 1rem;
+}
+
+.utility-class_1 {
+  border: 1px solid #d9d9d9 !important;
+}
+.utility-class_2 {
+  display: none !important;
+  transition: 1s !important;
+}
+.utility-class_3 {
+  transform: rotate(180deg);
+  transition: 0.5s !important;
+}/*# sourceMappingURL=stylesheet.css.map */
