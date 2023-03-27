@@ -4,11 +4,15 @@ html {
     font-family: Montserrat;
 }
 
-// @media screen and (max-width: 878px) {
-//     html {
-//         font-size: 55%;
-//     }
-// }
+@media screen and (max-width: 878px) {
+    html {
+        font-size: 45%;
+    }
+    .modal{
+        top: 10% !important;
+        left: 10% !important;
+    }
+}
 
 $light: #fff;
 $dark: #000;
@@ -16,10 +20,13 @@ $bg-primary: radial-gradient(circle, #2e2e2e 0, hsla(0, 0%, 5%, 0.958) 49%, #050
 $light-v2: #d9d9d9;
 $light-v3: #f1f1f1;
 $dark-v2: #2f2f2f;
-$gradient-1: linear-gradient(180deg,rgba(47,47,47,.4),rgba(47,47,47,.5));
-$gradient-2: linear-gradient(180deg,#2f2f2f,#2f2f2f);
+$gradient-1: linear-gradient(180deg, rgba(47, 47, 47, 0.4), rgba(47, 47, 47, 0.5));
+$gradient-2: linear-gradient(180deg, #2f2f2f, #2f2f2f);
+$gradient-3: linear-gradient(180deg,rgba(47,47,47,.8),rgba(47,47,47,.4));
+$gradient-4: linear-gradient(180deg,rgba(47,47,47,.4),rgba(47,47,47,.5));;
 
-@mixin btnFonts{
+
+@mixin btnFonts {
     font-family: Montserrat;
     font-style: normal;
     font-weight: 700;
@@ -39,13 +46,16 @@ $gradient-2: linear-gradient(180deg,#2f2f2f,#2f2f2f);
     }
 }
 
+i{
+    cursor: pointer;
+}
+
 body {
     background: #202020;
     background: $bg-primary;
-    height: 100vh;
+    // height: 100vh;
 }
 // ************ DEFAULT STYLINGS END *************** //
-
 
 //  ******************* NAVIGATIONS STYLING START ***************** //
 .nav {
@@ -72,7 +82,7 @@ body {
     &-links {
         font-size: 2.5rem;
 
-        & p{
+        & p {
             border-radius: 0.4rem;
             padding: 1.2rem 0.8rem;
             border: 0.1rem solid transparent;
@@ -93,7 +103,6 @@ body {
             border-radius: 0.4rem;
             cursor: pointer;
             @include btnFonts;
-
         }
 
         &_2 {
@@ -113,58 +122,144 @@ body {
 }
 //  ******************* NAVIGATIONS STYLING END ***************** //
 
-
 //  ******************* APP STYLING START ***************** //
-.app{
+.app {
     width: fit-content;
     background: $gradient-1;
     border: 0.1rem solid $light-v3;
     border-radius: 0.8rem;
     padding: 3rem;
     position: relative;
-    margin:  8rem auto;
+    margin: 8rem auto;
     font-size: 2rem !important;
+    overflow: scroll;
+    margin-bottom: 15rem;
 
-    & button{
-            border: 0.1rem solid $light-v2;
-            border-bottom: 0.4rem solid $light-v2;
-            border-radius: 0.4rem;
-            background-color: $dark-v2;
-            text-decoration: none;
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: 700;
-            font-size: 2rem;
-            color: #f1f1f1;
-            text-transform: uppercase;
-            padding: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all .25s;
-            width: 100%;
-
+    & button {
+        border: 0.1rem solid $light-v2;
+        border-bottom: 0.4rem solid $light-v2;
+        border-radius: 0.4rem;
+        background-color: $dark-v2;
+        text-decoration: none;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 2rem;
+        color: #f1f1f1;
+        text-transform: uppercase;
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.25s;
+        width: 100%;
     }
 
+    &-stake {
+        &-option {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin: auto 12rem;
+
+            & p {
+                border-radius: 0.4rem;
+                padding: 1.2rem 0.8rem;
+                border: 0.1rem solid transparent;
+                font-size: 2rem;
+                transition: all 0.25s;
+                cursor: pointer;
+            }
+        }
+
+        &-board {
+            background: $gradient-3;
+            border-radius: 0.8rem;
+            padding: 1.5rem 2.5rem;
+            margin: 1rem auto;
+
+            &_info{
+                display: flex;
+                justify-content: space-between;
+                text-align: center;
+
+                &:first-child{
+                    border-bottom: 0.2rem solid $light;
+                }
+
+                & div{
+                    padding: 1rem;
+                }
+            }
+        }
+
+        &-input{
+            border: 0.1rem solid $light;
+            padding: 2rem;
+            border-radius: 0.4rem;
+
+            & div{
+                margin-bottom: 3rem;
+            }
+
+            &-a{
+                display: flex;
+                justify-content: space-between;
+            }
+
+            &-b{
+                & input{
+                    width: 100%;
+                    color: $dark;
+                    height: 6rem;
+                }
+            }
+        }
+    }
+}
+
+.warning{
+    display: flex;
+    justify-content: space-between;
+
+    & p i{
+        font-size: 4rem;
+        margin-right: 1rem;
+    }
+}
+
+.head{
+    display: flex;
+    justify-content: space-between;
+}
+
+.body{
+    display: flex;
+    gap: 2rem;
+    color: $light-v2;
+
+    & img{
+        margin-right: 1rem;
+    }
 }
 //  ******************* APP STYLING END ***************** //
 
 // *********** SWAP STYLINGS START **************** //
-.swapbox{
+.swapbox {
     display: flex;
 
-    &_select{
+    &_select {
         margin: auto 1rem;
 
-        & input{
+        & input {
             width: 30rem;
             height: 4rem;
         }
     }
 }
 
-.token_select{
+.token_select {
     padding: 0.5rem;
     border: 0.1rem solid $dark-v2;
     border-radius: 0.3rem;
@@ -173,7 +268,7 @@ body {
     width: 10rem;
 }
 
-.tokenBalance{
+.tokenBalance {
     text-align: end;
 }
 
@@ -182,15 +277,15 @@ body {
     align-items: center;
     border-radius: 0.5rem;
     cursor: pointer;
-    transition: .3s;
-  }
-  
-  .rad-label:hover,
-  .rad-label:focus-within {
+    transition: 0.3s;
+}
+
+.rad-label:hover,
+.rad-label:focus-within {
     background: $dark-v2;
-  }
-  
-  .rad-input {
+}
+
+.rad-input {
     position: absolute;
     left: 0;
     top: 0;
@@ -198,70 +293,69 @@ body {
     height: 1px;
     opacity: 0;
     z-index: -1;
-  }
-  
-  .rad-design {
+}
+
+.rad-design {
     width: 22px;
     height: 22px;
     border-radius: 100px;
-  
+
     background: $bg-primary;
     position: relative;
-  }
-  
-  .rad-design::before {
-    content: '';
-  
+}
+
+.rad-design::before {
+    content: "";
+
     display: inline-block;
     width: inherit;
     height: inherit;
     border-radius: inherit;
-  
+
     background: hsl(0, 0%, 90%);
     transform: scale(1.1);
-    transition: .3s;
-  }
-  
-  .rad-input:checked+.rad-design::before {
-    transform: scale(0);
-  }
-  
-  .rad-text {
-    margin-left: 14px;
-    transition: .3s;
-    font-size: 1.5rem;
-  }
-  
-  .rad-input:checked~.rad-text {
-    color: hsl(0, 0%, 40%);
-  }
+    transition: 0.3s;
+}
 
-  .modal{
+.rad-input:checked + .rad-design::before {
+    transform: scale(0);
+}
+
+.rad-text {
+    margin-left: 14px;
+    transition: 0.3s;
+    font-size: 1.5rem;
+}
+
+.rad-input:checked ~ .rad-text {
+    color: hsl(0, 0%, 40%);
+}
+
+.modal {
     top: 40% !important;
 
-    &-content{
-    width: 20rem !important;
-    background: $gradient-2;
-    color: $light;
+    &-content {
+        width: 20rem !important;
+        background: $gradient-2;
+        color: $light;
     }
 
-    &-body *{
+    &-body * {
         text-align: center;
         margin-bottom: 2rem;
         border-radius: 1rem;
     }
-  }
-  
-  .settings{
+}
+
+.settings {
     display: flex;
     justify-content: space-between;
-  }
+}
 
 // *********** SWAP STYLINGS END **************** //
 
-
 //  ******************* FOOTER STYLING START ***************** //
-.footer{
+.footer {
     position: fixed;
     bottom: 0;
     display: flex;
@@ -269,29 +363,74 @@ body {
     width: 100%;
     background-color: $dark;
 
-    &-links{
+    &-links {
         padding: 2rem;
-        & i{
+        & i {
             font-size: 5rem;
             margin: 1rem;
         }
     }
-
 }
 //  ******************* FOOTER STYLING END ***************** //
-
 
 // ************* UTILITY CLASSES ************* //
 .utility-class {
     &_1 {
         border: 1px solid $light-v2 !important;
     }
-    &_2{
+    &_2 {
         display: none !important;
         transition: 1s !important;
     }
-    &_3{
-        transform: rotate(180deg);
-        transition: 0.5s !important;
+    // &_3 {
+    //     transform: rotate(180deg);
+    //     transition: 0.5s !important;
+    // }
+    &_4{
+        font-weight: 800;
+    }
+}
+
+progress[value]::-webkit-progress-value {
+    background-image:
+         -webkit-linear-gradient(-45deg, 
+                                 transparent 33%, rgba(0, 0, 0, .1) 33%, 
+                                 rgba(0,0, 0, .1) 66%, transparent 66%),
+         -webkit-linear-gradient(top, 
+                                 rgba(255, 255, 255, .25), 
+                                 rgba(0, 0, 0, .25)),
+         -webkit-linear-gradient(left, rgb(38, 42, 43), rgb(72, 66, 66));
+  
+      border-top-right-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+      background-size: 35px 20px, 100% 100%, 100% 100%;
+
+      height: 3rem;
+
+  }
+
+  
+progress[value] {
+    background-image:
+         -webkit-linear-gradient(-45deg, 
+                                 transparent 33%, rgba(0, 0, 0, .1) 33%, 
+                                 rgba(0,0, 0, .1) 66%, transparent 66%),
+         -webkit-linear-gradient(top, 
+                                 rgba(255, 255, 255, .25), 
+                                 rgba(0, 0, 0, .25)),
+         -webkit-linear-gradient(left, rgb(38, 42, 43), rgb(59, 52, 52));
+  
+         border-top-right-radius: 1rem;
+         border-bottom-right-radius: 1rem;
+      background-size: 35px 20px, 100% 100%, 100% 100%;
+
+      height: 3rem;
+
+  }
+
+  @media screen and (max-width: 878px) {
+    .modal{
+        top: 22% !important;
+        left: 10% !important;
     }
 }
