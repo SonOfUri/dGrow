@@ -382,10 +382,10 @@ body {
         display: none !important;
         transition: 1s !important;
     }
-    // &_3 {
-    //     transform: rotate(180deg);
-    //     transition: 0.5s !important;
-    // }
+     &_3 {
+         transform: rotate(180deg);
+         transition: 0.5s !important;
+     }
     &_4{
         font-weight: 800;
     }

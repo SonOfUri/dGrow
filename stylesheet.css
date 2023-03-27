@@ -323,6 +323,10 @@ body {
   display: none !important;
   transition: 1s !important;
 }
+.utility-class_3 {
+  transform: rotate(180deg);
+  transition: 0.5s !important;
+}
 .utility-class_4 {
   font-weight: 800;
 }
