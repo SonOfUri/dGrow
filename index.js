@@ -1,11 +1,34 @@
 const { Alchemy, Network, Utils } = require("alchemy-sdk");
 const BigNumber = require('bignumber.js');
 const qs = require('qs');
-const web3 = require('web3');
+const Web3Modal = require('web3modal');
+const Web3 = require("web3");
+const web3 = new Web3();
+
 let currentTrade = {};
 let currentSelectSide;
 let tokens;
 var foundtoken = [];
+var chosenLimit = 20000000000;
+
+
+const radioButtons = document.querySelectorAll('input[type="radio"]');
+
+radioButtons.forEach(function(radioButton) {
+  radioButton.addEventListener('click', function() {
+    if (radioButton.value === 'slow') {
+        chosenLimit = 15000000000;
+      console.log("Slow gas limit selected", chosenLimit);
+    } else if (radioButton.value === 'default') {
+        chosenLimit = 20000000000;
+      console.log("Default gas limit selected", chosenLimit);
+    } else if (radioButton.value === 'fast') {
+      // code to handle selection of fast gas limit
+      chosenLimit = 25000000000;
+      console.log("Fast gas limit selected", chosenLimit);
+    }
+  });
+});
 
 function isExists(tokenList, _token){
     for (const i in tokenList){
@@ -237,15 +260,20 @@ async function getPrice(){
 
 async function getQuote(account){
     console.log("Getting Quote");
-  
+
     if (!currentTrade.from || !currentTrade.to || !document.getElementById("from_amount").value) return;
     let amount = Number(document.getElementById("from_amount").value * 10 ** currentTrade.from.decimals);
+    let slippageInput = document.getElementById("slippageInput").value;
+    if (!slippageInput){
+        slippageInput = (1/10);
+    }
   
     const params = {
         sellToken: currentTrade.from.address,
         buyToken: currentTrade.to.address,
         sellAmount: amount,
         takerAddress: account,
+        slippagePercentage: slippageInput,
     }
   
     // Fetch the swap quote.
@@ -329,9 +357,6 @@ async function getBalances(token){
 
 
 
-
-
-
 // START APPLICATION AND GET TOKEN LIST 
 init();
 
@@ -346,3 +371,4 @@ document.getElementById("modal_close").onclick = closeModal;
 document.getElementById("from_amount").onblur = getPrice;
 document.getElementById("swap_button").onclick = trySwap;
 document.getElementById("search_btn").onclick = searchTokens;
+document.getElementById("approve-stake").onclick = stake;

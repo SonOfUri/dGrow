@@ -87,19 +87,18 @@
                         <div class="utility-class_2" id="speed">
                             <div style="margin-top: 5px">
                                 <label class="rad-label">
-                                    <input type="radio" class="rad-input" name="rad" />
+                                    <input type="radio" class="rad-input" name="rad" value="fast" id="fast" />
                                     <div class="rad-design"></div>
                                     <div class="rad-text">Fast</div>
                                 </label>
-
                                 <label class="rad-label">
-                                    <input type="radio" class="rad-input" name="rad" />
+                                    <input type="radio" class="rad-input" name="rad" value="default" id="default" />
                                     <div class="rad-design"></div>
                                     <div class="rad-text">Default</div>
                                 </label>
 
                                 <label class="rad-label">
-                                    <input type="radio" class="rad-input" name="rad" />
+                                    <input type="radio" class="rad-input" name="rad" value="slow" id="slow" />
                                     <div class="rad-design"></div>
                                     <div class="rad-text">Slow</div>
                                 </label>
@@ -108,7 +107,7 @@
                     </div>
                     <br>
                     <div class="utility-class_2" id="slippage">
-                        <input type="text" name="slippage" id="" style="color: black;">
+                        <input type="text" name="slippage" id="slippageInput" style="color: black;">
                         <label for="slippage">Slippage %</label>
                     </div>
                     <br />
@@ -160,10 +159,10 @@
                     <p><img src="img/logo.png" alt="dGrow Logo" style="width: 25px;"> Balance: <span>210000</span></p>
                 </div>
                 <div class="app-stake-input-b">
-                    <input type="number" name="stake" id="">
+                    <input type="number" name="stake" id="stake-input">
                 </div>
                 <div class="app-stake-input-btn">
-                    <button>
+                    <button id="approve-stake">
                         Approve Only
                     </button>
                 </div>
