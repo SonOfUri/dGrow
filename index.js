@@ -208,7 +208,7 @@ async function selectToken(token) {
   closeModal();
   currentTrade[currentSelectSide] = token;
   console.log("currentTrade: ", currentTrade);
-  getBalances(token.address);
+  getBalances(token.address, token.decimals);
   renderInterface();
 }
 
@@ -570,10 +570,11 @@ function hexToDecimal(input) {
   // Parse the hexadecimal string as a number
   const decimal = parseInt(hex, 16);
 
+
   return decimal;
 }
 
-async function getBalances(token) {
+async function getBalances(token, dec) {
   //get active user
   let accounts = await ethereum.request({ method: "eth_accounts" });
   let userAddress = accounts[0];
@@ -595,6 +596,8 @@ async function getBalances(token) {
   // console.log("this is balance", balanceOfToken);
   // console.log(hexToDecimal(balanceOfToken.tokenBalance))
   document.getElementById("tokenBal").textContent = hexToDecimal(balanceOfToken.tokenBalance);
+
+  var decimal_alt = decimal / (10 ** dec)
 }
 
 // START APPLICATION AND GET TOKEN LIST
