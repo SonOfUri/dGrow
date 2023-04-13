@@ -206,6 +206,7 @@ body {
 }
 .swapbox_select {
   margin: auto 1rem;
+  cursor: pointer;
 }
 .swapbox_select input {
   width: 30rem;
