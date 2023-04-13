@@ -3,7 +3,7 @@ const BigNumber = require("bignumber.js");
 const qs = require("qs");
 const Web3Modal = require("web3modal");
 const Web3 = require("web3");
-const web3 = new Web3();
+// const web3 = new Web3();
 
 let currentTrade = {};
 let currentSelectSide;
@@ -226,21 +226,51 @@ function renderInterface() {
   }
 }
 
-async function connect() {
-  if (typeof window.ethereum !== "undefined") {
-    try {
-      console.log("connecting");
-      await ethereum.request({ method: "eth_requestAccounts" });
-    } catch (error) {
-      console.log(error);
+// async function connect() {
+  
+//   if (typeof window.ethereum !== "undefined") {
+//     try {
+//       console.log("connecting");
+//       await ethereum.request({ method: "eth_requestAccounts" });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//     document.getElementById("login_button").innerHTML = "Connected";
+//     // const accounts = await ethereum.request({ method: "eth_accounts" });
+//     document.getElementById("swap_button").disabled = false;
+//   } else {
+//     document.getElementById("login_button").innerHTML =
+//       "Please install MetaMask";
+//   }
+// }
+async function connect(){
+    // Check if the user has MetaMask installed
+    if (window.ethereum) {
+      try {
+        // Request account access from the user
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
+        // Create a new instance of Web3 using the user's provider
+        const web3 = new Web3(window.ethereum);
+        // Check if the user is connected to the Arbitrum network
+        const chainId = await web3.eth.getChainId();
+        if (chainId !== 42161) {
+          alert('Please connect to the Arbitrum network in MetaMask');
+          return;
+        }
+  
+        // Retrieve the user's account address
+        const accounts = await web3.eth.getAccounts();
+        const address = accounts[0];
+        
+        document.getElementById("login_button").innerHTML = "Connected";
+        return address;
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      alert('Please install MetaMask to use this feature');
     }
-    document.getElementById("login_button").innerHTML = "Connected";
-    // const accounts = await ethereum.request({ method: "eth_accounts" });
-    document.getElementById("swap_button").disabled = false;
-  } else {
-    document.getElementById("login_button").innerHTML =
-      "Please install MetaMask";
-  }
+    
 }
 
 function openModal(side) {
