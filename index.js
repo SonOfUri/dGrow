@@ -72,6 +72,8 @@ async function listAvailableTokens(){
         if (tokens[i].address == "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"){
             console.log("found USDC")
             var found = tokens[i];
+            found.address = "0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8"
+            // console.log(found)
             if (isExists(foundtoken, tokens[i].address)){
                 foundtoken.unshift(found);
             }
@@ -79,19 +81,24 @@ async function listAvailableTokens(){
         // for usdT 
         if (tokens[i].address == "0xdac17f958d2ee523a2206206994597c13d831ec7"){
             var found = tokens[i];
+            found.address = "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9"
             if (isExists(foundtoken, tokens[i].address)){
                 foundtoken.unshift(found);
             }
         } 
-        // for weth
+        // for arbitrum
         if (tokens[i].address == "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"){
             var found = tokens[i];
+            found.address = "0x912CE59144191C1204E64559FE8253a0e49E6548"
+            found.name = "Arbitrum"
+            found.symbol = "ARB"
+            console.log(found)
             if (isExists(foundtoken, tokens[i].address)){
                 foundtoken.unshift(found);
             }
         }
         // for dai
-        if (tokens[i].address == "0x6b175474e89094c44da98b954eedeac495271d0f"){
+        if (tokens[i].address == "0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1"){
             var found = tokens[i];
             if (isExists(foundtoken, tokens[i].address)){
                 foundtoken.unshift(found);
@@ -100,6 +107,7 @@ async function listAvailableTokens(){
         // for wbtc
         if (tokens[i].address == "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599"){
             var found = tokens[i];
+            found.address = "0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f"
             if (isExists(foundtoken, tokens[i].address)){
                 foundtoken.unshift(found);
             }
@@ -249,7 +257,7 @@ async function getPrice(){
     }
   
     // Fetch the swap price.
-    const response = await fetch(`https://api.0x.org/swap/v1/price?${qs.stringify(params)}`);
+    const response = await fetch(`https://arbitrum.api.0x.org/swap/v1/price?${qs.stringify(params)}`);
     
     swapPriceJSON = await response.json();
     console.log("Price: ", swapPriceJSON);
@@ -277,7 +285,7 @@ async function getQuote(account){
     }
   
     // Fetch the swap quote.
-    const response = await fetch(`https://api.0x.org/swap/v1/quote?${qs.stringify(params)}`);
+    const response = await fetch(`https://arbitrum.api.0x.org/swap/v1/quote?${qs.stringify(params)}`);
     
     swapQuoteJSON = await response.json();
     
