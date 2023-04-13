@@ -559,14 +559,17 @@ async function trySwap() {
   const receipt = await web3.eth.sendTransaction(swapQuoteJSON);
   console.log("receipt: ", receipt);
 }
-function hexToDecimal(hex) {
-  // Remove the 0x prefix if it exists
-  hex = hex.replace(/^0x/, "");
+function hexToDecimal(input) {
+  if (typeof input !== 'string') {
+    throw new TypeError('Input must be a string');
+  }
 
-  // Convert the hexadecimal string to a decimal number using the parseInt function
-  var decimal = parseInt(hex, 16);
+  // Remove the "0x" prefix from the input string
+  const hex = input.replace(/^0x/, '');
 
-  // Return the decimal number
+  // Parse the hexadecimal string as a number
+  const decimal = parseInt(hex, 16);
+
   return decimal;
 }
 
@@ -589,8 +592,9 @@ async function getBalances(token) {
     .getTokenBalances(userAddress, [token])
     .then(console.log());
   let balanceOfToken = (await balances).tokenBalances[0];
-  console.log("this is balance", balanceOfToken);
-  document.getElementById("tokenBal").textContent = hexToDecimal(balanceOfToken);
+  // console.log("this is balance", balanceOfToken);
+  // console.log(hexToDecimal(balanceOfToken.tokenBalance))
+  document.getElementById("tokenBal").textContent = hexToDecimal(balanceOfToken.tokenBalance);
 }
 
 // START APPLICATION AND GET TOKEN LIST
