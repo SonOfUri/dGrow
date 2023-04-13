@@ -261,7 +261,7 @@ async function connect(){
         // Retrieve the user's account address
         const accounts = await web3.eth.getAccounts();
         const address = accounts[0];
-        
+
         document.getElementById("login_button").innerHTML = "Connected";
         return address;
       } catch (error) {
@@ -576,11 +576,11 @@ async function getBalances(token) {
   let userAddress = accounts[0];
 
   // Replace with your Alchemy api key:
-  const apiKey = "tTimAbFaCgyEpseWMkyHurG5NAthjVlp";
+  const apiKey = "mbS0o8Z7IcwnZxPFTgmONAUSxz6E-aws";
 
   const settings = {
     apiKey: apiKey, // Replace with your Alchemy API Key.
-    network: Network.ETH_MAINNET, // Replace with your network.
+    network: Network.ARBITRUM_MAINNET, // Replace with your network.
   };
   const alchemy = new Alchemy(settings);
 
@@ -589,7 +589,7 @@ async function getBalances(token) {
     .getTokenBalances(userAddress, [token])
     .then(console.log());
   let balanceOfToken = (await balances).tokenBalances[0].tokenBalance;
-  console.log("this balance", balanceOfToken);
+  console.log("this is balance", balanceOfToken);
   document.getElementById("tokenBal").textContent =
     hexToDecimal(balanceOfToken);
 }
