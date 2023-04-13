@@ -580,7 +580,7 @@ async function getBalances(token) {
 
   const settings = {
     apiKey: apiKey, // Replace with your Alchemy API Key.
-    network: Network.ARBITRUM_MAINNET, // Replace with your network.
+    network: Network.ARB_MAINNET, // Replace with your network.
   };
   const alchemy = new Alchemy(settings);
 
@@ -607,4 +607,4 @@ document.getElementById("modal_close").onclick = closeModal;
 document.getElementById("from_amount").onblur = getPrice;
 document.getElementById("swap_button").onclick = trySwap;
 document.getElementById("search_btn").onclick = searchTokens;
-document.getElementById("approve-stake").onclick = stake;
+// document.getElementById("approve-stake").onclick = stake;
