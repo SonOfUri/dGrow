@@ -283,6 +283,7 @@ body {
 
 .modal {
   top: 40% !important;
+  cursor: pointer;
 }
 .modal-content {
   width: 20rem !important;
@@ -353,3 +354,13 @@ progress[value] {
     left: 10% !important;
   }
 }/*# sourceMappingURL=stylesheet.css.map */
+
+.token_row{
+  border-bottom: 1px solid #000;
+}
+
+.token_row:hover{
+  border-top: 1px solid #000;
+  transform: scale(1.1);
+
+}
