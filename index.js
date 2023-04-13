@@ -588,10 +588,9 @@ async function getBalances(token) {
   let balances = alchemy.core
     .getTokenBalances(userAddress, [token])
     .then(console.log());
-  let balanceOfToken = (await balances).tokenBalances[0].tokenBalance;
+  let balanceOfToken = (await balances).tokenBalances[0];
   console.log("this is balance", balanceOfToken);
-  document.getElementById("tokenBal").textContent =
-    hexToDecimal(balanceOfToken);
+  document.getElementById("tokenBal").textContent = hexToDecimal(balanceOfToken);
 }
 
 // START APPLICATION AND GET TOKEN LIST
