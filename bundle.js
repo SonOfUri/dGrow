@@ -93,6 +93,7 @@ async function listAvailableTokens(){
             found.address = "0x912CE59144191C1204E64559FE8253a0e49E6548"
             found.name = "Arbitrum"
             found.symbol = "ARB"
+            found.logoURI = "https://imgtr.ee/images/2023/04/13/nPjUY.png"
             console.log(found)
             if (isExists(foundtoken, tokens[i].address)){
                 foundtoken.unshift(found);
