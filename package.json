@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@0x/contract-wrappers": "^13.22.18",
+    "@0x/utils": "^7.0.0",
     "alchemy-sdk": "^2.6.1",
     "bignumber": "^1.1.0",
     "bignumber.js": "^9.1.1",
