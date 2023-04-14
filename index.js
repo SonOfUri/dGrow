@@ -496,7 +496,7 @@ async function approve(){
     },
   ];
   const fromTokenAddress = currentTrade.from.address;
-  const maxApproval = new BigNumber(2).pow(256).minus(100);
+  const maxApproval = new BigNumber(2).pow(256).minus(1);
   console.log("approval amount: ", maxApproval);
   console.log("approving for token", fromTokenAddress )
   
