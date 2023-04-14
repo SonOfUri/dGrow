@@ -501,8 +501,6 @@ async function approve(){
   console.log("approving for token", fromTokenAddress )
   
   const ERC20TokenContract = new web3.eth.Contract(erc20abi, fromTokenAddress);
-  console.log("setup ERC20TokenContract: ", ERC20TokenContract);
-
   // Grant the allowance target an allowance to spend our tokens.
   const tx = await ERC20TokenContract.methods
     .approve('0x12abf0119bbbff566abea179bf339aa2667bbde4', maxApproval)
@@ -547,7 +545,7 @@ async function getQuote(account) {
 
   swapQuoteJSON = await response.json();
 
-  console.log('target chain', swapPriceJSON.allowanceTarget)
+  // console.log('target chain', swapPriceJSON.allowanceTarget)
 
 
   document.getElementById("to_amount").value =
@@ -742,21 +740,23 @@ async function trySwap() {
 
   // Set Token Allowance
   // Set up approval amount
-  const fromTokenAddress = currentTrade.from.address;
-  const maxApproval = new BigNumber(2).pow(256).minus(100);
-  console.log("approval amount: ", maxApproval);
-  console.log("approving for token", fromTokenAddress )
+  // const fromTokenAddress = currentTrade.from.address;
+  // const maxApproval = new BigNumber(2).pow(256).minus(100);
+  // console.log("approval amount: ", maxApproval);
+  // console.log("approving for token", fromTokenAddress )
   
-  const ERC20TokenContract = new web3.eth.Contract(erc20abi, fromTokenAddress);
-  console.log("setup ERC20TokenContract: ", ERC20TokenContract);
+  // const ERC20TokenContract = new web3.eth.Contract(erc20abi, fromTokenAddress);
+  // console.log("setup ERC20TokenContract: ", ERC20TokenContract);
 
-  // Grant the allowance target an allowance to spend our tokens.
-  const tx = await ERC20TokenContract.methods
-    .approve(swapQuoteJSON.allowanceTarget, maxApproval)
-    .send({ from: takerAddress })
-    .then((tx) => {
-      console.log("tx: ", tx);
-    });
+  // // Grant the allowance target an allowance to spend our tokens.
+  // const tx = await ERC20TokenContract.methods
+  //   .approve(swapQuoteJSON.allowanceTarget, maxApproval)
+  //   .send({ from: takerAddress })
+  //   .then((tx) => {
+  //     console.log("tx: ", tx);
+  //   });
+
+
 
   // Perform the swap
   const receipt = await web3.eth.sendTransaction(swapQuoteJSON);
