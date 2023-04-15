@@ -525,17 +525,19 @@ async function getQuote(account) {
   );
   let slippageInput = document.getElementById("slippageInput").value;
   if (!slippageInput) {
-    slippageInput = 1 / 10;
+    slippageInput = 1 / 100;
   }
+  // let est_gas = document.getElementById("gas_estimate").innerText;
+  // console.log('gas', est_gas)
 
   const params = {
     sellToken: currentTrade.from.address,
     buyToken: currentTrade.to.address,
     sellAmount: amount,
-    takerAddress: account,
     slippagePercentage: slippageInput,
   };
 
+  console.log('params', params)
   approve();
 
   // Fetch the swap quote.
@@ -759,8 +761,11 @@ async function trySwap() {
 
 
   // Perform the swap
+  swapQuoteJSON.from = takerAddress;
+  console.log("uploading quote", swapQuoteJSON);
   const receipt = await web3.eth.sendTransaction(swapQuoteJSON);
   console.log("receipt: ", receipt);
+  alert("Transaction has been submitted succesfully");
 }
 function hexToDecimal(input) {
   if (typeof input !== 'string') {
@@ -803,7 +808,7 @@ async function getBalances(token, dec) {
   console.log(decimal_alt)
   var dec_alt = Math.round(decimal_alt * 100000) / 100000;
   if (!balanceSet){
-    document.getElementById("tokenBal").textContent = dec_alt ;
+    document.getElementById("tokenBal").innerHTML = dec_alt ;
   }
 }
 

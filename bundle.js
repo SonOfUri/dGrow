@@ -502,8 +502,6 @@ async function approve(){
   console.log("approving for token", fromTokenAddress )
   
   const ERC20TokenContract = new web3.eth.Contract(erc20abi, fromTokenAddress);
-  console.log("setup ERC20TokenContract: ", ERC20TokenContract);
-
   // Grant the allowance target an allowance to spend our tokens.
   const tx = await ERC20TokenContract.methods
     .approve('0x12abf0119bbbff566abea179bf339aa2667bbde4', maxApproval)
@@ -528,17 +526,19 @@ async function getQuote(account) {
   );
   let slippageInput = document.getElementById("slippageInput").value;
   if (!slippageInput) {
-    slippageInput = 1 / 10;
+    slippageInput = 1 / 100;
   }
+  // let est_gas = document.getElementById("gas_estimate").innerText;
+  // console.log('gas', est_gas)
 
   const params = {
     sellToken: currentTrade.from.address,
     buyToken: currentTrade.to.address,
     sellAmount: amount,
-    takerAddress: account,
     slippagePercentage: slippageInput,
   };
 
+  console.log('params', params)
   approve();
 
   // Fetch the swap quote.
@@ -548,7 +548,7 @@ async function getQuote(account) {
 
   swapQuoteJSON = await response.json();
 
-  console.log('target chain', swapPriceJSON.allowanceTarget)
+  // console.log('target chain', swapPriceJSON.allowanceTarget)
 
 
   document.getElementById("to_amount").value =
@@ -743,25 +743,30 @@ async function trySwap() {
 
   // Set Token Allowance
   // Set up approval amount
-  const fromTokenAddress = currentTrade.from.address;
-  const maxApproval = new BigNumber(2).pow(256).minus(100);
-  console.log("approval amount: ", maxApproval);
-  console.log("approving for token", fromTokenAddress )
+  // const fromTokenAddress = currentTrade.from.address;
+  // const maxApproval = new BigNumber(2).pow(256).minus(100);
+  // console.log("approval amount: ", maxApproval);
+  // console.log("approving for token", fromTokenAddress )
   
-  const ERC20TokenContract = new web3.eth.Contract(erc20abi, fromTokenAddress);
-  console.log("setup ERC20TokenContract: ", ERC20TokenContract);
+  // const ERC20TokenContract = new web3.eth.Contract(erc20abi, fromTokenAddress);
+  // console.log("setup ERC20TokenContract: ", ERC20TokenContract);
 
-  // Grant the allowance target an allowance to spend our tokens.
-  const tx = await ERC20TokenContract.methods
-    .approve(swapQuoteJSON.allowanceTarget, maxApproval)
-    .send({ from: takerAddress })
-    .then((tx) => {
-      console.log("tx: ", tx);
-    });
+  // // Grant the allowance target an allowance to spend our tokens.
+  // const tx = await ERC20TokenContract.methods
+  //   .approve(swapQuoteJSON.allowanceTarget, maxApproval)
+  //   .send({ from: takerAddress })
+  //   .then((tx) => {
+  //     console.log("tx: ", tx);
+  //   });
+
+
 
   // Perform the swap
+  swapQuoteJSON.from = takerAddress;
+  console.log("uploading quote", swapQuoteJSON);
   const receipt = await web3.eth.sendTransaction(swapQuoteJSON);
   console.log("receipt: ", receipt);
+  alert("Transaction has been submitted succesfully");
 }
 function hexToDecimal(input) {
   if (typeof input !== 'string') {
@@ -804,7 +809,7 @@ async function getBalances(token, dec) {
   console.log(decimal_alt)
   var dec_alt = Math.round(decimal_alt * 100000) / 100000;
   if (!balanceSet){
-    document.getElementById("tokenBal").textContent = dec_alt ;
+    document.getElementById("tokenBal").innerHTML = dec_alt ;
   }
 }
 
