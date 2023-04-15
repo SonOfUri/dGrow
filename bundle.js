@@ -809,7 +809,7 @@ async function getBalances(token, dec) {
   console.log(decimal_alt)
   var dec_alt = Math.round(decimal_alt * 100000) / 100000;
   if (!balanceSet){
-    document.getElementById("tokenBal").innerHTML = dec_alt ;
+    document.getElementById("tokenBal").innerHTML = decimal_alt ;
   }
 }
 
