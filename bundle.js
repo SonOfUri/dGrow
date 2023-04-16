@@ -807,10 +807,11 @@ async function getBalances(token, dec) {
   var decimal = hexToDecimal(balanceOfToken.tokenBalance)
   var decimal_alt = decimal / (10 ** dec)
   console.log(decimal_alt)
-  var dec_alt = Math.round(decimal_alt * 100000) / 100000;
-  if (!balanceSet){
-    document.getElementById("tokenBal").innerHTML = decimal_alt ;
-  }
+  document.getElementById("tokenBal").innerHTML = decimal_alt ;
+//   var dec_alt = Math.round(decimal_alt * 100000) / 100000;
+//   if (!balanceSet){
+//     document.getElementById("tokenBal").innerHTML = decimal_alt ;
+//   }
 }
 
 // START APPLICATION AND GET TOKEN LIST
