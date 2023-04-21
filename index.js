@@ -217,7 +217,6 @@ async function selectToken(token) {
   renderInterface();
 }
 
-
 function renderInterface() {
   if (currentTrade.from) {
     console.log(currentTrade.from);
@@ -820,8 +819,15 @@ function exchangeValues(){
   var hold = currentTrade['from'];
   currentTrade["from"] = currentTrade["to"];
   currentTrade["to"] = hold;
-  console.log("exchanged values", currentTrade);
+  // console.log("exchanged values", currentTrade);
   renderInterface();
+  var fromToken = currentTrade["from"]
+  console.log(fromToken.address)
+    setTimeout(() => {
+
+  }, 1200)
+  getBalances(fromToken.address, fromToken.decimals);
+  getBalances();
   
 }
 
