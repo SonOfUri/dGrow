@@ -382,7 +382,11 @@ progress[value] {
   width: fit-content;
   padding: 0.25rem;
   cursor: pointer;
-  transition: 2s ease-in-out;
+  transition: .5s;
+}
+
+.sox:hover{
+  transform: rotate(360deg);
 }
 
 .sox i{
