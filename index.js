@@ -814,7 +814,11 @@ async function getBalances(token, dec) {
   }
 }
 
-function exchangeValues{
+function exchangeValues(){
+  var hold = currentTrade['from'];
+  currentTrade['from'] = currentTrade['to'];
+  currentTrade = hold;
+  console.log("exchanged values", currentTrade)
   
 }
 
