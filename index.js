@@ -811,20 +811,25 @@ async function getBalances(token, dec) {
   var dec_alt = Math.round(decimal_alt * 100000) / 100000;
   if (!balanceSet){
     document.getElementById("tokenBal").innerHTML = decimal_alt ;
+    balanceSet = true;
   }
 }
 
 function exchangeValues(){
+  console.log('exchanging');
   var hold = currentTrade['from'];
-  currentTrade['from'] = currentTrade['to'];
-  currentTrade = hold;
-  console.log("exchanged values", currentTrade)
+  currentTrade["from"] = currentTrade["to"];
+  currentTrade["to"] = hold;
+  console.log("exchanged values", currentTrade);
+  renderInterface();
   
 }
 
 // START APPLICATION AND GET TOKEN LIST
 init();
 
+
+document.getElementById("xchangeBtn").onclick = exchangeValues;
 document.getElementById("login_button").onclick = connect;
 document.getElementById("from_token_select").onclick = () => {
   openModal("from");

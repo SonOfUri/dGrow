@@ -13,6 +13,8 @@ let tokens;
 var foundtoken = [];
 var chosenLimit = 20000000000;
 
+
+
 var balanceSet = false;
 const radioButtons = document.querySelectorAll('input[type="radio"]');
 
@@ -210,7 +212,7 @@ async function searchTokens() {
 async function selectToken(token) {
   closeModal();
   currentTrade[currentSelectSide] = token;
-  console.log("currentTrade: ", currentTrade);
+  console.log("currentTrade: ", currentTrade);  
   getBalances(token.address, token.decimals);
   balanceSet = true;
   renderInterface();
@@ -807,16 +809,28 @@ async function getBalances(token, dec) {
   var decimal = hexToDecimal(balanceOfToken.tokenBalance)
   var decimal_alt = decimal / (10 ** dec)
   console.log(decimal_alt)
-  document.getElementById("tokenBal").innerHTML = decimal_alt ;
-//   var dec_alt = Math.round(decimal_alt * 100000) / 100000;
-//   if (!balanceSet){
-//     document.getElementById("tokenBal").innerHTML = decimal_alt ;
-//   }
+  var dec_alt = Math.round(decimal_alt * 100000) / 100000;
+  if (!balanceSet){
+    document.getElementById("tokenBal").innerHTML = decimal_alt ;
+    balanceSet = true;
+  }
+}
+
+function exchangeValues(){
+  console.log('exchanging');
+  var hold = currentTrade['from'];
+  currentTrade["from"] = currentTrade["to"];
+  currentTrade["to"] = hold;
+  console.log("exchanged values", currentTrade);
+  renderInterface();
+  
 }
 
 // START APPLICATION AND GET TOKEN LIST
 init();
 
+
+document.getElementById("xchangeBtn").onclick = exchangeValues;
 document.getElementById("login_button").onclick = connect;
 document.getElementById("from_token_select").onclick = () => {
   openModal("from");
