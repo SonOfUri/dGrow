@@ -826,7 +826,6 @@ function exchangeValues(){
 }
 
 
-
 const selectElement = document.getElementById("from_amount");
 selectElement.addEventListener("input", refreshPrice);
 function refreshPrice(event){
