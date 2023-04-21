@@ -827,11 +827,16 @@ function exchangeValues(){
 
 
 
-const selectElement = document.querySelector("#from_amount");
+const selectElement = document.getElementById("from_amount");
+selectElement.addEventListener("input", refreshPrice);
+function refreshPrice(event){
+  var something = event.target.value;
+  setTimeout(() => {
 
-selectElement.addEventListener("change", (event) => {
+  }, 1200)
   getPrice();
-});
+}
+
 
 
 

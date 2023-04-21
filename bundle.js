@@ -214,7 +214,7 @@ async function selectToken(token) {
   currentTrade[currentSelectSide] = token;
   console.log("currentTrade: ", currentTrade);  
   getBalances(token.address, token.decimals);
-//   balanceSet = true;
+  balanceSet = true;
   renderInterface();
 }
 
@@ -825,6 +825,23 @@ function exchangeValues(){
   renderInterface();
   
 }
+
+
+
+const selectElement = document.getElementById("from_amount");
+selectElement.addEventListener("input", refreshPrice);
+function refreshPrice(event){
+  var something = event.target.value;
+  setTimeout(() => {
+
+  }, 1200)
+  getPrice();
+}
+
+
+
+
+
 
 // START APPLICATION AND GET TOKEN LIST
 init();
