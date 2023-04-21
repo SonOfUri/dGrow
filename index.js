@@ -825,6 +825,18 @@ function exchangeValues(){
   
 }
 
+
+
+const selectElement = document.querySelector("#from_amount");
+
+selectElement.addEventListener("change", (event) => {
+  getPrice();
+});
+
+
+
+
+
 // START APPLICATION AND GET TOKEN LIST
 init();
 
