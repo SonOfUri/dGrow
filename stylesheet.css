@@ -378,12 +378,13 @@ progress[value] {
   margin-top: 2rem;
   margin-bottom: 2rem;
   margin-left: 2rem;
-  width: 5rem;
-  padding: 1rem;
+  width: fit-content;
+  padding: 0.25rem;
   cursor: pointer;
 }
 
 .sox i{
   transform: rotate(90deg);
   font-size: 2rem;
+  margin: auto 1rem !important;
 }
