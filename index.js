@@ -12,6 +12,8 @@ let tokens;
 var foundtoken = [];
 var chosenLimit = 20000000000;
 
+
+
 var balanceSet = false;
 const radioButtons = document.querySelectorAll('input[type="radio"]');
 
@@ -810,6 +812,10 @@ async function getBalances(token, dec) {
   if (!balanceSet){
     document.getElementById("tokenBal").innerHTML = decimal_alt ;
   }
+}
+
+function exchangeValues{
+  
 }
 
 // START APPLICATION AND GET TOKEN LIST
