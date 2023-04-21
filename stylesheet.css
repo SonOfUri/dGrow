@@ -371,3 +371,19 @@ progress[value] {
     justify-content: space-around !important;
   }
 }
+
+.sox{
+  border: 0.5px solid #ffffff;
+  border-radius: 5px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+  width: 5rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.sox i{
+  transform: rotate(90deg);
+  font-size: 2rem;
+}
