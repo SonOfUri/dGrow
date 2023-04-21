@@ -214,7 +214,7 @@ async function selectToken(token) {
   currentTrade[currentSelectSide] = token;
   console.log("currentTrade: ", currentTrade);  
   getBalances(token.address, token.decimals);
-  balanceSet = true;
+  // balanceSet = true;
   renderInterface();
 }
 
