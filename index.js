@@ -209,7 +209,7 @@ async function searchTokens() {
 async function selectToken(token) {
   closeModal();
   currentTrade[currentSelectSide] = token;
-  console.log("currentTrade: ", currentTrade);
+  console.log("currentTrade: ", currentTrade);  
   getBalances(token.address, token.decimals);
   balanceSet = true;
   renderInterface();
