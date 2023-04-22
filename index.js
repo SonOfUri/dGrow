@@ -288,14 +288,17 @@ function closeModal() {
 }
 
 async function getPrice() {
+
   console.log("Getting Price");
 
   if (
     !currentTrade.from ||
     !currentTrade.to ||
     !document.getElementById("from_amount").value
-  )
+  ){
+    document.getElementById("to_amount").value = 0;
     return;
+  }
   let amount = Number(
     document.getElementById("from_amount").value *
       10 ** currentTrade.from.decimals
