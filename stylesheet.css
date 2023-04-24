@@ -211,6 +211,9 @@ body {
 .swapbox_select input {
   width: 30rem;
   height: 4rem;
+  color: #000;
+  font-weight: 900;
+  font-size: 2rem;
 }
 
 .token_select {
