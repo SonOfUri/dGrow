@@ -12,7 +12,7 @@ let tokens;
 var foundtoken = [];
 var chosenLimit = 20000000000;
 
-
+var targetallowance = '';
 
 var balanceSet = false;
 const radioButtons = document.querySelectorAll('input[type="radio"]');
@@ -317,11 +317,15 @@ async function getPrice() {
 
   swapPriceJSON = await response.json();
   console.log("Price: ", swapPriceJSON);
+  console.log("target allowance", swapPriceJSON.allowanceTarget)
 
   document.getElementById("to_amount").value =
     swapPriceJSON.buyAmount / 10 ** currentTrade.to.decimals;
   document.getElementById("gas_estimate").innerHTML =
     swapPriceJSON.estimatedGas;
+
+
+  return swapPriceJSON.allowanceTarget;
 }
 
 async function approve(){
@@ -503,11 +507,12 @@ async function approve(){
   const maxApproval = new BigNumber(2).pow(256).minus(1);
   console.log("approval amount: ", maxApproval);
   console.log("approving for token", fromTokenAddress )
-  
+
+  var allowanceTarget = getPrice();
   const ERC20TokenContract = new web3.eth.Contract(erc20abi, fromTokenAddress);
   // Grant the allowance target an allowance to spend our tokens.
   const tx = await ERC20TokenContract.methods
-    .approve('0x12abf0119bbbff566abea179bf339aa2667bbde4', maxApproval)
+    .approve(allowanceTarget, maxApproval)
     .send({ from: takerAddress })
     .then((tx) => {
       console.log("tx: ", tx);
