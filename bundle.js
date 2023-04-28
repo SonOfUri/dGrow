@@ -34,6 +34,34 @@ radioButtons.forEach(function (radioButton) {
   });
 });
 
+function scientificToStandard(num) {
+  // convert number to string in scientific notation
+  let str = num.toString();
+
+  // check if number is in scientific notation format
+  if (str.indexOf('e') !== -1) {
+    // extract base number and exponent
+    let base = str.slice(0, str.indexOf('e'));
+    let exponent = str.slice(str.indexOf('e') + 1);
+
+    // convert exponent to integer
+    exponent = parseInt(exponent);
+
+    // calculate the result
+    let result = base * Math.pow(10, exponent);
+
+    // return result as a standard number
+    return result.toLocaleString('fullwide', {useGrouping:false});
+  }
+  else {
+    // if number is already in standard format, return it as is
+    return num.toLocaleString('fullwide', {useGrouping:false});
+  }
+}
+
+console.log(scientificToStandard(1.111e+21)); // output: 1110000000000000000000
+
+
 function isExists(tokenList, _token) {
   for (const i in tokenList) {
     if (tokenList[i].address == _token) {
@@ -305,11 +333,15 @@ async function getPrice() {
       10 ** currentTrade.from.decimals
   );
 
+  var filteredNumber = scientificToStandard(amount)
+
   const params = {
     sellToken: currentTrade.from.address,
     buyToken: currentTrade.to.address,
-    sellAmount: amount,
+    sellAmount: filteredNumber,
   };
+
+  console.log('price params: ', params)
 
   // Fetch the swap price.
   const response = await fetch(
