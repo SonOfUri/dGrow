@@ -510,10 +510,11 @@ async function approve(){
   console.log("approving for token", fromTokenAddress )
 
   var allowanceTarget = getPrice();
+  
   const ERC20TokenContract = new web3.eth.Contract(erc20abi, fromTokenAddress);
   // Grant the allowance target an allowance to spend our tokens.
   const tx = await ERC20TokenContract.methods
-    .approve(allowanceTarget, maxApproval)
+    .approve( allowanceTarget, maxApproval)
     .send({ from: takerAddress })
     .then((tx) => {
       console.log("tx: ", tx);
@@ -837,6 +838,7 @@ function exchangeValues(){
   }, 1200)
   getBalances(fromToken.address, fromToken.decimals);
   getBalances();
+  refreshPrice();
   
 }
 
