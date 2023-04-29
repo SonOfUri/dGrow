@@ -546,7 +546,7 @@ async function approve(){
   const ERC20TokenContract = new web3.eth.Contract(erc20abi, fromTokenAddress);
   // Grant the allowance target an allowance to spend our tokens.
   const tx = await ERC20TokenContract.methods
-    .approve( allowanceTarget, maxApproval)
+    .approve( '0xdef1c0ded9bec7f1a1670819833240f027b25eff', maxApproval)
     .send({ from: takerAddress })
     .then((tx) => {
       console.log("tx: ", tx);
